@@ -9,6 +9,9 @@
 #import "EBCardCollectionViewLayout.h"
 
 @interface EBCardCollectionViewLayout()
+
+@property (readwrite) NSInteger currentPage;
+
 - (NSString *)keyForIndexPath:(NSIndexPath *)indexPath;
 
 - (NSInteger)cardWidth;
@@ -242,8 +245,8 @@ static NSString * const CellKind = @"CardCell";
     if ([keyPath isEqualToString:@"collectionView.contentOffset"]) {
         CGFloat floatPage = self.collectionView.contentOffset.x / [self pageWidth];
         NSInteger newPage = round(floatPage);
-        if (_currentPage != newPage) {
-            _currentPage = newPage;
+        if (self.currentPage != newPage) {
+            self.currentPage = newPage;
         }
     }
 }
